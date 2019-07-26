@@ -12,6 +12,7 @@
 		1A7E623F22EAE9F10005F9E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E623D22EAE9F10005F9E7 /* Main.storyboard */; };
 		1A7E624122EAE9F20005F9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E624022EAE9F20005F9E7 /* Assets.xcassets */; };
 		1A7E624422EAE9F20005F9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A7E624222EAE9F20005F9E7 /* LaunchScreen.storyboard */; };
+		823C7E0639588F68DE1DED0E /* Pods_GitHubAPIPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF56E16A0A0F98525F94E1ED /* Pods_GitHubAPIPractice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		1A7E624022EAE9F20005F9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A7E624322EAE9F20005F9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A7E624522EAE9F20005F9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22C0AB1602330441E12763E0 /* Pods-GitHubAPIPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubAPIPractice.debug.xcconfig"; path = "Target Support Files/Pods-GitHubAPIPractice/Pods-GitHubAPIPractice.debug.xcconfig"; sourceTree = "<group>"; };
+		282BB07B3B6EACEAB8237595 /* Pods-GitHubAPIPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubAPIPractice.release.xcconfig"; path = "Target Support Files/Pods-GitHubAPIPractice/Pods-GitHubAPIPractice.release.xcconfig"; sourceTree = "<group>"; };
+		BF56E16A0A0F98525F94E1ED /* Pods_GitHubAPIPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubAPIPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823C7E0639588F68DE1DED0E /* Pods_GitHubAPIPractice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		022A665F0916EF1F04A28BD6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				22C0AB1602330441E12763E0 /* Pods-GitHubAPIPractice.debug.xcconfig */,
+				282BB07B3B6EACEAB8237595 /* Pods-GitHubAPIPractice.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		1A7E622D22EAE9F10005F9E7 = {
 			isa = PBXGroup;
 			children = (
 				1A7E623822EAE9F10005F9E7 /* GitHubAPIPractice */,
 				1A7E623722EAE9F10005F9E7 /* Products */,
+				022A665F0916EF1F04A28BD6 /* Pods */,
+				D5DD95F14E10EAD95329A28C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +81,14 @@
 			path = GitHubAPIPractice;
 			sourceTree = "<group>";
 		};
+		D5DD95F14E10EAD95329A28C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF56E16A0A0F98525F94E1ED /* Pods_GitHubAPIPractice.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A7E624822EAE9F20005F9E7 /* Build configuration list for PBXNativeTarget "GitHubAPIPractice" */;
 			buildPhases = (
+				52CFEB9AEF0C8A4DC1C924BB /* [CP] Check Pods Manifest.lock */,
 				1A7E623222EAE9F10005F9E7 /* Sources */,
 				1A7E623322EAE9F10005F9E7 /* Frameworks */,
 				1A7E623422EAE9F10005F9E7 /* Resources */,
+				948CCF16E2342327EDB3E1D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52CFEB9AEF0C8A4DC1C924BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GitHubAPIPractice-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		948CCF16E2342327EDB3E1D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHubAPIPractice/Pods-GitHubAPIPractice-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GitHubAPIPractice/Pods-GitHubAPIPractice-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GitHubAPIPractice/Pods-GitHubAPIPractice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A7E623222EAE9F10005F9E7 /* Sources */ = {
@@ -280,6 +349,7 @@
 		};
 		1A7E624922EAE9F20005F9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22C0AB1602330441E12763E0 /* Pods-GitHubAPIPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +369,7 @@
 		};
 		1A7E624A22EAE9F20005F9E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 282BB07B3B6EACEAB8237595 /* Pods-GitHubAPIPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
