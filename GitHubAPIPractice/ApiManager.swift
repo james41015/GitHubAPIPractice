@@ -12,11 +12,11 @@ import Alamofire
 class ApiManager {
     static let sharedInstance = ApiManager()
     
-    func getRequest(url: String ,parameters: Parameters ,completionHandler: @escaping (SearchResponseModel?, NSError?) -> ()) -> DataRequest {
+    func getRequest(url: String ,parameters: Parameters ,completionHandler: @escaping (SearchResponseModel?, HTTPURLResponse?, NSError?) -> ()) -> DataRequest {
         return request(method: .get, url: url, parameters: parameters, completionHandler: completionHandler)
     }
     
-    private func request(method: HTTPMethod, url: String ,parameters: Parameters ,completionHandler: @escaping (SearchResponseModel?, NSError?) -> ()) -> DataRequest {
+    private func request(method: HTTPMethod, url: String ,parameters: Parameters ,completionHandler: @escaping (SearchResponseModel?, HTTPURLResponse?, NSError?) -> ()) -> DataRequest {
         return Alamofire.request(url, method: method, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
             switch response.result {
             case .success(_):
@@ -25,13 +25,13 @@ class ApiManager {
                 if let data = response.data, let searchResponse = try?
                     decoder.decode(SearchResponseModel.self, from: data)
                 {
-                    completionHandler(searchResponse,nil)
+                    completionHandler(searchResponse, response.response, nil)
                 } else {
                     print("error")
                 }
                 
             case .failure(let error):
-                completionHandler(nil, error as NSError)
+                completionHandler(nil, nil, error as NSError)
             }
         }
     }

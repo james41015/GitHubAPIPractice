@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     var resultCollectionView: UICollectionView!
     var resultArray = [User]()
     let viewModel = ViewModel()
+    var nextPageUrl: String?
+    var isLoadingNextPage = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,9 +78,12 @@ class ViewController: UIViewController {
     }
 
     @objc private func searchClick() {
-        self.viewModel.search(keyWord: self.searchTextField.text!) { (responeModel, error) in
+        self.viewModel.search(keyWord: self.searchTextField.text!, page: "1") { (responseModel, httpURLResponse, error) in
+            if let nextPageUrl = self.viewModel.getNextPageFromHeaders(response:  httpURLResponse) {
+                self.nextPageUrl = nextPageUrl
+            }
             self.resultArray.removeAll()
-            if let items = responeModel?.items {
+            if let items = responseModel?.items {
                 for user in items {
                     self.resultArray.append(user)
                 }
@@ -87,6 +92,22 @@ class ViewController: UIViewController {
         }
     }
 
+    private func loadNextPage(nextPage: String) {
+        self.isLoadingNextPage = true
+        self.viewModel.loadNextPage(nextPageUrl: nextPage) { (responseModel, httpURLResponse, error) in
+            self.isLoadingNextPage = false
+            if let nextPageUrl = self.viewModel.getNextPageFromHeaders(response:  httpURLResponse) {
+                self.nextPageUrl = nextPageUrl
+            }
+            if let items = responseModel?.items {
+                for user in items {
+                    self.resultArray.append(user)
+                }
+            }
+            self.resultCollectionView.reloadData()
+        }
+    }
+    
 }
 
 extension ViewController: UITextFieldDelegate {
@@ -113,6 +134,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         cell.resultImageView.kf.setImage(with: URL(string: self.resultArray[indexPath.row].avatar_url))
         cell.titleLabel.text = self.resultArray[indexPath.row].login
         
+        
+        let rowsToLoadFromBottom = 4;
+        let rowsLoaded = resultArray.count
+        if let nextPage = self.nextPageUrl {
+            if (!isLoadingNextPage && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom))) {
+                self.loadNextPage(nextPage: nextPage)
+            }
+        }
         return cell
     }
     
