@@ -12,11 +12,10 @@ class SearchResponseModel: Codable {
     
     var items: [User]
     
- 
 }
 
 class User: Codable {
     
     var login: String
-    var avatarUrl: String
+    var avatar_url: String
 }

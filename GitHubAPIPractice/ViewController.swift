@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     let searchButton = UIButton(type: UIButton.ButtonType.system)
     var resultCollectionView: UICollectionView!
     var resultArray = [User]()
+    let viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +76,15 @@ class ViewController: UIViewController {
     }
 
     @objc private func searchClick() {
-
+        self.viewModel.search(keyWord: self.searchTextField.text!) { (responeModel, error) in
+            self.resultArray.removeAll()
+            if let items = responeModel?.items {
+                for user in items {
+                    self.resultArray.append(user)
+                }
+            }
+            self.resultCollectionView.reloadData()
+        }
     }
 
 }
@@ -100,9 +110,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ResultCollectionViewCell.self), for: indexPath) as! ResultCollectionViewCell
+        cell.resultImageView.kf.setImage(with: URL(string: self.resultArray[indexPath.row].avatar_url))
+        cell.titleLabel.text = self.resultArray[indexPath.row].login
         
         return cell
-        
     }
     
     
