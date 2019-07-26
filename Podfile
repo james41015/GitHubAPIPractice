@@ -8,6 +8,5 @@ target 'GitHubAPIPractice' do
   # Pods for GitHubAPIPractice
 	pod 'Alamofire'
 	pod 'Kingfisher', '~> 5.0'
-	pod 'ObjectMapper', '~> 3.4'
 	pod 'SnapKit', '~> 4.0.0'
 end
