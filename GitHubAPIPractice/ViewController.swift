@@ -78,6 +78,7 @@ class ViewController: UIViewController {
     }
 
     @objc private func searchClick() {
+        self.searchTextField.resignFirstResponder()
         self.viewModel.search(keyWord: self.searchTextField.text!, page: "1") { (responseModel, httpURLResponse, error) in
             if let nextPageUrl = self.viewModel.getNextPageFromHeaders(response:  httpURLResponse) {
                 self.nextPageUrl = nextPageUrl
